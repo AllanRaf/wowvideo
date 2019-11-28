@@ -8,13 +8,14 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import {mychannels} from '../../../channels/mychannels';
+import {connect} from 'react-redux';
 
-export default class ChannelContainer extends Component {
-  channelSelect = () => {
-    console.log('changing channel');
+export class ChannelVisualiser extends Component {
+  channelSelect = channel => {
+    console.log('changing channel to', channel);
+    console.log('this.props is', this.props);
   };
   render() {
-    console.log('mychannels is', mychannels);
     return (
       <>
         <View style={styles.main}>
@@ -25,8 +26,12 @@ export default class ChannelContainer extends Component {
             data={mychannels}
             renderItem={({item}) => (
               <View style={styles.channelIcons}>
-                <TouchableHighlight onPress={this.channelSelect}>
-                  <Image style={styles.image} source={{uri: item.icon}} />
+                <TouchableHighlight onPress={() => this.channelSelect(item.id)}>
+                  <Image
+                    key={item.id}
+                    style={styles.image}
+                    source={{uri: item.icon}}
+                  />
                 </TouchableHighlight>
                 <Text>{item.name}</Text>
               </View>
@@ -38,6 +43,14 @@ export default class ChannelContainer extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    c: state,
+  };
+}
+
+export default connect(mapStateToProps)(ChannelVisualiser);
 
 const styles = StyleSheet.create({
   main: {

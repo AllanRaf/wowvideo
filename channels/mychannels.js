@@ -30,4 +30,22 @@ export const mychannels = [
     icon: 'https://emoji.beeimg.com/%F0%9F%98%83/40',
     playlist: ['FOH3ZOMBwhY', 'ErfEnD2WA3A', 'JZnlJ2upJv8', 'Km8kIX-8hVs'],
   },
+  {
+    id: 4,
+    name: 'Sick',
+    icon: 'https://emoji.beeimg.com/🐉/40',
+    playlist: ['FOH3ZOMBwhY', 'ErfEnD2WA3A', 'JZnlJ2upJv8', 'Km8kIX-8hVs'],
+  },
+  {
+    id: 5,
+    name: 'Food',
+    icon: 'https://emoji.beeimg.com/🍿/40/apple',
+    playlist: [
+      'QSqIG5Dl-SM',
+      'Km8kIX-8hVs',
+      'c9EOCt9kkUo',
+      '85RhW75xM8U',
+      'URLyBDYHoGo',
+    ],
+  },
 ];
