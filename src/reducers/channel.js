@@ -1,5 +1,5 @@
 //reducers/test.js
-export default (state = '', action) => {
+export default (state = 1, action) => {
   switch (action.type) {
     case 'NEW_CHANNEL':
       console.log('NEW CHANNEL', action.payload);

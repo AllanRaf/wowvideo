@@ -8,14 +8,15 @@ export class VideoVisualiser extends Component {
   render() {
     console.log(
       'this.props.channel in Video Visualiser is',
-      this.props.channel,
+      this.props.state.channel,
     );
+
     return (
       <>
         <YouTube
           // The YouTube video ID
           //videoId="FOH3ZOMBwhY"
-          videoIds={mychannels[1].playlist}
+          videoIds={mychannels[this.props.state.channel].playlist}
           play // control playback of video with true/false
           fullscreen={false} // control whether the video should play in fullscreen or inline
           loop // control whether the video should loop when ended
@@ -32,7 +33,7 @@ export class VideoVisualiser extends Component {
 
 function mapStateToProps(state) {
   return {
-    channel: state,
+    state,
   };
 }
 

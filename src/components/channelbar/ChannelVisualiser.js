@@ -38,7 +38,7 @@ export class ChannelVisualiser extends Component {
                 <Text>{item.name}</Text>
               </View>
             )}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.name}
           />
         </View>
       </>
@@ -48,7 +48,7 @@ export class ChannelVisualiser extends Component {
 
 function mapStateToProps(state) {
   return {
-    channel: state,
+    state,
   };
 }
 
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'red',
   },
   mainText: {
     fontSize: 30,
