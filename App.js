@@ -24,7 +24,7 @@ class App extends Component {
             <Text>Videos</Text>
             <ChannelContainer />
           </View>
-          {/*<YouTube
+          <YouTube
             // The YouTube video ID
             //videoId="FOH3ZOMBwhY"
             videoIds={mychannels[1].playlist}
@@ -36,7 +36,7 @@ class App extends Component {
             onChangeQuality={e => this.setState({quality: e.quality})}
             onError={e => this.setState({error: e.error})}
             style={styles.videoArea}
-          />*/}
+          />
           <View style={styles.main}>
             <Text>Navigation</Text>
           </View>

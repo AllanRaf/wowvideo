@@ -1,12 +1,5 @@
 import React, {Component} from 'react';
-import {
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Image,
-  View,
-  Text,
-} from 'react-native';
+import {FlatList, StyleSheet, Image, View, Text} from 'react-native';
 
 export default class ChannelContainer extends Component {
   render() {
@@ -25,8 +18,7 @@ export default class ChannelContainer extends Component {
             horizontal={true}
             data={[
               {
-                url:
-                  'https://neverthink.tv/assets/images/61d1aeee19fd7cff13a8b17727f1b5a4e9645f16c42ff376a5e5f3ce8a373df2.png',
+                url: 'https://emoji.beeimg.com/%F0%9F%8D%94/40/apple',
                 id: 1,
               },
               {
@@ -41,8 +33,8 @@ export default class ChannelContainer extends Component {
               },
             ]}
             renderItem={({item}) => (
-              <View>
-                <Image style={styles.images} source={{uri: item.url}} />
+              <View style={styles.channelIcons}>
+                <Image style={styles.image} source={{uri: item.url}} />
 
                 <Text>Hello</Text>
               </View>
@@ -69,8 +61,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 44,
   },
-  images: {
+  image: {
     height: 50,
     width: 50,
+    marginHorizontal: 50,
+  },
+  channelIcons: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
 });
