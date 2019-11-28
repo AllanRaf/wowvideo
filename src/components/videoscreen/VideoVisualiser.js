@@ -2,9 +2,14 @@ import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
 import YouTube from 'react-native-youtube';
 import {mychannels} from '../../../channels/mychannels';
+import {connect} from 'react-redux';
 
-export default class VideoVisualiser extends Component {
+export class VideoVisualiser extends Component {
   render() {
+    console.log(
+      'this.props.channel in Video Visualiser is',
+      this.props.channel,
+    );
     return (
       <>
         <YouTube
@@ -24,6 +29,14 @@ export default class VideoVisualiser extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    channel: state,
+  };
+}
+
+export default connect(mapStateToProps)(VideoVisualiser);
 
 const styles = StyleSheet.create({
   main: {

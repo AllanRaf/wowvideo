@@ -12,8 +12,10 @@ import {connect} from 'react-redux';
 
 export class ChannelVisualiser extends Component {
   channelSelect = channel => {
-    console.log('changing channel to', channel);
-    console.log('this.props is', this.props);
+    console.log('the new channel is', channel);
+    const action = {type: 'NEW_CHANNEL', payload: channel};
+    this.props.dispatch(action);
+    console.log('this.props after dispatch', this.props.channel);
   };
   render() {
     return (
@@ -46,7 +48,7 @@ export class ChannelVisualiser extends Component {
 
 function mapStateToProps(state) {
   return {
-    c: state,
+    channel: state,
   };
 }
 
