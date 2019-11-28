@@ -1,4 +1,4 @@
-export const channels = [
+export const mychannels = [
   {
     id: 1,
     name: 'Meme Radar',

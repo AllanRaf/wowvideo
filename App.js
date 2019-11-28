@@ -15,6 +15,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 class App extends Component {
   render() {
+    console.log('mychannels is', mychannels);
     return (
       <>
         <SafeAreaView>
@@ -25,7 +26,8 @@ class App extends Component {
               <Text style={styles.mainText}>Wow Video</Text>
               <YouTube
                 // The YouTube video ID
-                videoId="FOH3ZOMBwhY"
+                //videoId="FOH3ZOMBwhY"
+                videoIds={mychannels[1].playlist}
                 play // control playback of video with true/false
                 fullscreen={false} // control whether the video should play in fullscreen or inline
                 loop // control whether the video should loop when ended
