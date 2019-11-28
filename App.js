@@ -10,7 +10,7 @@ import React, {Component} from 'react';
 import {SafeAreaView, StyleSheet, ScrollView, View, Text} from 'react-native';
 import YouTube from 'react-native-youtube';
 import {mychannels} from './channels/mychannels';
-import ChannelContainer from './src/components/channelbar/ChannelContainer';
+import ChannelVisualiser from './src/components/channelbar/ChannelContainer';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
@@ -22,7 +22,7 @@ class App extends Component {
         <SafeAreaView style={styles.safeArea}>
           <View style={styles.main}>
             <Text>Videos</Text>
-            <ChannelContainer />
+            <ChannelVisualiser />
           </View>
           <YouTube
             // The YouTube video ID

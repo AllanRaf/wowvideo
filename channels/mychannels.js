@@ -2,8 +2,7 @@ export const mychannels = [
   {
     id: 1,
     name: 'Meme Radar',
-    icon:
-      'https://neverthink.tv/assets/images/63e3939725b3d92af5e7b8429a0f4d57e6be661abf380b39348f360e528dd6e2.png',
+    icon: 'https://emoji.beeimg.com/%F0%9F%98%83/40',
     playlist: [
       'QSqIG5Dl-SM',
       'Km8kIX-8hVs',
@@ -28,8 +27,7 @@ export const mychannels = [
   {
     id: 3,
     name: 'WTF',
-    icon:
-      'https://neverthink.tv/assets/images/fde01ee47dc02d83892c35c22f2efd81ßf52c37edc4f3651be40094a115c812fd.png',
+    icon: 'https://emoji.beeimg.com/%F0%9F%98%83/40',
     playlist: ['FOH3ZOMBwhY', 'ErfEnD2WA3A', 'JZnlJ2upJv8', 'Km8kIX-8hVs'],
   },
 ];
