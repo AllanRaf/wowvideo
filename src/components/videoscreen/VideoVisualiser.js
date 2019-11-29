@@ -5,23 +5,39 @@ import {mychannels} from '../../../channels/mychannels';
 import {connect} from 'react-redux';
 
 export class VideoVisualiser extends Component {
+  componentDidMount() {
+    //check youtube ref
+    console.log('this', this.player.state.playerParams.videoId);
+  }
+  currentVideo = () => {
+    //add current video to the list
+    console.log('Changing video');
+  };
   render() {
-    console.log(
-      'this.props.channel in Video Visualiser is',
-      this.props.state.channel,
-    );
-
     return (
       <>
         <YouTube
           // The YouTube video ID
           //videoId="FOH3ZOMBwhY"
-          videoIds={mychannels[this.props.state.channel].playlist}
+          ref={item => (this.player = item)}
+          //videoId={mychannels[1].playlist[0]}
+          videoIds={
+            mychannels[
+              this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
+            ].playlist
+          }
           play // control playback of video with true/false
           fullscreen={false} // control whether the video should play in fullscreen or inline
           loop // control whether the video should loop when ended
-          onReady={e => this.setState({isReady: true})}
-          onChangeState={e => this.setState({status: e.state})}
+          onReady={e => {
+            console.log('onReady');
+            this.setState({isReady: true});
+          }}
+          onChangeState={(...args) => {
+            console.log('onChangeState', args);
+            this.currentVideo();
+            // this.setState({status: e.state});
+          }}
           onChangeQuality={e => this.setState({quality: e.quality})}
           onError={e => this.setState({error: e.error})}
           style={styles.videoArea}
@@ -56,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   videoArea: {
-    flex: 4,
+    flex: 3,
     alignSelf: 'stretch',
     height: 300,
   },

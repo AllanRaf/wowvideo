@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'red',
   },
   safeArea: {
     flex: 1,

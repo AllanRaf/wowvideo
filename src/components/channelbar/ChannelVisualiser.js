@@ -11,11 +11,10 @@ import {mychannels} from '../../../channels/mychannels';
 import {connect} from 'react-redux';
 
 export class ChannelVisualiser extends Component {
-  channelSelect = channel => {
-    console.log('the new channel is', channel);
-    const action = {type: 'NEW_CHANNEL', payload: channel};
+  channelSelect = (id, icon) => {
+    const action = {type: 'NEW_CHANNEL', payload: {id, icon}};
     this.props.dispatch(action);
-    console.log('this.props after dispatch', this.props.channel);
+    console.log('this.props after dispatch', this.props.state);
   };
   render() {
     return (
@@ -28,7 +27,8 @@ export class ChannelVisualiser extends Component {
             data={mychannels}
             renderItem={({item}) => (
               <View style={styles.channelIcons}>
-                <TouchableHighlight onPress={() => this.channelSelect(item.id)}>
+                <TouchableHighlight
+                  onPress={() => this.channelSelect(item.id, item.icon)}>
                   <Image
                     key={item.id}
                     style={styles.image}
@@ -39,6 +39,19 @@ export class ChannelVisualiser extends Component {
               </View>
             )}
             keyExtractor={item => item.name}
+          />
+        </View>
+        <View style={styles.currentChannel}>
+          <Text>
+            You are currently watching channel{' '}
+            {this.props.state ? this.props.state.channel.id : mychannels[0].id}
+          </Text>
+          <Image
+            source={{
+              uri: this.props.state
+                ? this.props.state.channel.icon
+                : mychannels[0].icon,
+            }}
           />
         </View>
       </>
@@ -73,10 +86,14 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     marginHorizontal: 50,
+    margin: 10,
   },
   channelIcons: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
+  },
+  currentChannel: {
+    flex: 0.2,
   },
 });
