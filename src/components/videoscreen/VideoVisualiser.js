@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 export class VideoVisualiser extends Component {
   componentDidMount() {
     //check youtube ref
-    console.log('this', this._player.state.playerParams.videoId);
+    //console.log('this', this._player.state.playerParams.videoId);
   }
   currentVideo = () => {
     //add current video to the list
@@ -16,7 +16,22 @@ export class VideoVisualiser extends Component {
     this._player
       .getVideosIndex()
       .then(index => {
-        console.log('getting index', index);
+        console.log(
+          'getting index',
+          mychannels[
+            this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
+          ].playlist[index],
+        );
+        const watchedVideo =
+          mychannels[
+            this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
+          ].playlist[index];
+        const action = {type: 'ADD_WATCHED_VIDEO', payload: watchedVideo};
+        this.props.dispatch(action);
+        console.log(
+          'this.props after dispatching to ADD WATCHED VIDEO',
+          this.props.state,
+        );
       })
       .catch(errorMessage => {
         console.log(errorMessage);
@@ -43,7 +58,9 @@ export class VideoVisualiser extends Component {
             this.setState({isReady: true});
           }}
           onChangeState={(...args) => {
-            this.currentVideo();
+            if (args[0].state === 'playing') {
+              this.currentVideo();
+            }
 
             // this.setState({status: e.state});
           }}
