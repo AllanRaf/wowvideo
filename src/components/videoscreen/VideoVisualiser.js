@@ -7,11 +7,20 @@ import {connect} from 'react-redux';
 export class VideoVisualiser extends Component {
   componentDidMount() {
     //check youtube ref
-    console.log('this', this.player.state.playerParams.videoId);
+    console.log('this', this._player.state.playerParams.videoId);
   }
   currentVideo = () => {
     //add current video to the list
-    console.log('Changing video');
+    console.log('Changing video to', this._player);
+
+    this._player
+      .getVideosIndex()
+      .then(index => {
+        console.log('getting index', index);
+      })
+      .catch(errorMessage => {
+        console.log(errorMessage);
+      });
   };
   render() {
     return (
@@ -19,8 +28,8 @@ export class VideoVisualiser extends Component {
         <YouTube
           // The YouTube video ID
           //videoId="FOH3ZOMBwhY"
-          ref={item => (this.player = item)}
-          //videoId={mychannels[1].playlist[0]}
+          ref={item => (this._player = item)}
+          //videoId={mychannels[0].playlist[0]}
           videoIds={
             mychannels[
               this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
@@ -34,8 +43,8 @@ export class VideoVisualiser extends Component {
             this.setState({isReady: true});
           }}
           onChangeState={(...args) => {
-            console.log('onChangeState', args);
             this.currentVideo();
+
             // this.setState({status: e.state});
           }}
           onChangeQuality={e => this.setState({quality: e.quality})}

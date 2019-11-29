@@ -17,6 +17,7 @@ export class ChannelVisualiser extends Component {
     console.log('this.props after dispatch', this.props.state);
   };
   render() {
+    console.log('mychannels', mychannels[0].id);
     return (
       <>
         <View style={styles.main}>
