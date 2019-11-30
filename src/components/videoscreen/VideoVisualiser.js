@@ -16,22 +16,29 @@ export class VideoVisualiser extends Component {
     this._player
       .getVideosIndex()
       .then(index => {
-        console.log(
-          'getting index',
-          mychannels[
-            this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
-          ].playlist[index],
-        );
         const watchedVideo =
           mychannels[
             this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
           ].playlist[index];
-        const action = {type: 'ADD_WATCHED_VIDEO', payload: watchedVideo};
-        this.props.dispatch(action);
+        //find out whether I have watched this video before dispatching
         console.log(
-          'this.props after dispatching to ADD WATCHED VIDEO',
-          this.props.state,
+          'ALL THE VIDEOS I HAVE WATCHED',
+          this.props.state.videos,
+          'CURRENT VIDEO',
+          watchedVideo,
         );
+        console.log(
+          'HAVE I WATCHED THIS VIDEO? MATCH OR UNDEFINED',
+
+          this.props.state.videos.find(video => video === watchedVideo),
+        );
+        if (this.props.state.videos.find(video => video === watchedVideo)) {
+          //go to next video in channel if I have seen it otherwise add it to my list
+          this._player.nextVideo();
+        } else {
+          const action = {type: 'ADD_WATCHED_VIDEO', payload: watchedVideo};
+          this.props.dispatch(action);
+        }
       })
       .catch(errorMessage => {
         console.log(errorMessage);
