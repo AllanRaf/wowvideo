@@ -5,44 +5,50 @@ import {mychannels} from '../../../channels/mychannels';
 import {connect} from 'react-redux';
 
 export class VideoVisualiser extends Component {
-  componentDidMount() {
-    //check youtube ref
-    //console.log('this', this._player.state.playerParams.videoId);
-  }
   currentVideo = () => {
-    //add current video to the list
-    console.log('Changing video to', this._player);
+    const allVideosInChannel =
+      mychannels[
+        this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
+      ].playlist;
+    console.log('All VIDEOS IN CHANNEL', allVideosInChannel);
+    const allVideosIHaveSeen = this.props.state.videos;
+    console.log('ALL VIDEOS I HAVE SEEN', allVideosIHaveSeen);
 
-    this._player
-      .getVideosIndex()
-      .then(index => {
-        const watchedVideo =
-          mychannels[
-            this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
-          ].playlist[index];
-        //find out whether I have watched this video before dispatching
-        console.log(
-          'ALL THE VIDEOS I HAVE WATCHED',
-          this.props.state.videos,
-          'CURRENT VIDEO',
-          watchedVideo,
-        );
-        console.log(
-          'HAVE I WATCHED THIS VIDEO? MATCH OR UNDEFINED',
+    const unwatchedVideos = allVideosInChannel.filter(video => {
+      return !allVideosIHaveSeen.includes(video);
+    });
+    console.log('UNWATCHED VIDEOS IN CHANNEL', unwatchedVideos);
 
-          this.props.state.videos.find(video => video === watchedVideo),
-        );
-        if (this.props.state.videos.find(video => video === watchedVideo)) {
-          //go to next video in channel if I have seen it otherwise add it to my list
-          this._player.nextVideo();
-        } else {
-          const action = {type: 'ADD_WATCHED_VIDEO', payload: watchedVideo};
-          this.props.dispatch(action);
-        }
-      })
-      .catch(errorMessage => {
-        console.log(errorMessage);
+    //play first video I haven't seen by finding its index
+    let IndexOfFirstUnwatchedVideo = allVideosInChannel.findIndex(
+      video => video === unwatchedVideos[0],
+    );
+    console.log('FIRST INDEX OF UNWATCHED VIDEO', IndexOfFirstUnwatchedVideo);
+    //If I have seen everything in the channel then delete all the videos from my watched videos list
+    if (IndexOfFirstUnwatchedVideo === -1) {
+      const updateVideosIHaventSeen = allVideosIHaveSeen.filter(video => {
+        return !allVideosInChannel.includes(video);
       });
+      console.log('updateVideosIHaventSeen', updateVideosIHaventSeen);
+      //update Redux state to reflect this
+      const action = {
+        type: 'UPDATE_WATCHED_VIDEOS',
+        payload: updateVideosIHaventSeen,
+      };
+      this.props.dispatch(action);
+      IndexOfFirstUnwatchedVideo = 0;
+    }
+
+    this._player.playVideoAt(IndexOfFirstUnwatchedVideo);
+
+    const watchedVideo =
+      mychannels[
+        this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
+      ].playlist[IndexOfFirstUnwatchedVideo];
+
+    console.log('VIDEO I HAVE JUST WATCHED', watchedVideo);
+    const action = {type: 'ADD_WATCHED_VIDEO', payload: watchedVideo};
+    this.props.dispatch(action);
   };
   render() {
     return (
@@ -65,7 +71,8 @@ export class VideoVisualiser extends Component {
             this.setState({isReady: true});
           }}
           onChangeState={(...args) => {
-            if (args[0].state === 'playing') {
+            console.log('args', args);
+            if (args[0].state === 'unstarted') {
               this.currentVideo();
             }
 
