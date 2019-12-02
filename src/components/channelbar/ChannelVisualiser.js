@@ -11,8 +11,8 @@ import {mychannels} from '../../../channels/mychannels';
 import {connect} from 'react-redux';
 
 export class ChannelVisualiser extends Component {
-  channelSelect = (id, icon) => {
-    const action = {type: 'NEW_CHANNEL', payload: {id, icon}};
+  channelSelect = (id, icon, name) => {
+    const action = {type: 'NEW_CHANNEL', payload: {id, icon, name}};
     this.props.dispatch(action);
     //reset buffering to 0 and unstart to zero on channel change
     const actionVideoState = {
@@ -38,7 +38,8 @@ export class ChannelVisualiser extends Component {
               <View style={styles.channelIcons}>
                 <TouchableHighlight
                   onPress={() => {
-                    this.channelSelect(item.id, item.icon);
+                    console.log('item is', item);
+                    this.channelSelect(item.id, item.icon, item.name);
                     this.props.changingChannel();
                   }}>
                   <Image
@@ -56,7 +57,9 @@ export class ChannelVisualiser extends Component {
         <View style={styles.currentChannel}>
           <Text>
             You are currently watching channel{' '}
-            {this.props.state ? this.props.state.channel.id : mychannels[0].id}
+            {this.props.state
+              ? this.props.state.channel.name
+              : mychannels[0].name}
           </Text>
           <Image
             style={styles.currentChannelIcon}
