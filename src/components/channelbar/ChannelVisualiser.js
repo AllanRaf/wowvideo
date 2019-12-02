@@ -14,10 +14,11 @@ export class ChannelVisualiser extends Component {
   channelSelect = (id, icon) => {
     const action = {type: 'NEW_CHANNEL', payload: {id, icon}};
     this.props.dispatch(action);
-    console.log('this.props after dispatch', this.props.state);
+    const actionVideoState = {type: 'RESET_BUFFERING', payload: null};
+    this.props.dispatch(actionVideoState);
+    console.log('this.props after dispatch', this.props.state.videostate);
   };
   render() {
-    console.log('mychannels', mychannels[0].id);
     return (
       <>
         <View style={styles.main}>
@@ -29,7 +30,10 @@ export class ChannelVisualiser extends Component {
             renderItem={({item}) => (
               <View style={styles.channelIcons}>
                 <TouchableHighlight
-                  onPress={() => this.channelSelect(item.id, item.icon)}>
+                  onPress={() => {
+                    this.channelSelect(item.id, item.icon);
+                    this.props.changingChannel();
+                  }}>
                   <Image
                     key={item.id}
                     style={styles.image}
@@ -48,6 +52,7 @@ export class ChannelVisualiser extends Component {
             {this.props.state ? this.props.state.channel.id : mychannels[0].id}
           </Text>
           <Image
+            style={styles.currentChannelIcon}
             source={{
               uri: this.props.state
                 ? this.props.state.channel.icon
@@ -96,5 +101,10 @@ const styles = StyleSheet.create({
   },
   currentChannel: {
     flex: 0.2,
+    flexDirection: 'row',
+  },
+  currentChannelIcon: {
+    width: 20,
+    height: 20,
   },
 });

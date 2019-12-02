@@ -5,7 +5,27 @@ import {mychannels} from '../../../channels/mychannels';
 import {connect} from 'react-redux';
 
 export class VideoVisualiser extends Component {
+  constructor(props) {
+    super(props);
+  }
+  state = {
+    channelChanged: false,
+  };
+  componentDidMount() {
+    console.log('Component Did Mount VideoVisualiser this.props', this.props);
+    this.currentVideo();
+    console.log('CHANGING CHANNEL IN VISUALISER', this.props.channelChanged);
+    if (this.props.channelChanged) {
+      console.log('CHANGING CHANNEL IN VISUALISER');
+    }
+  }
+
   currentVideo = () => {
+    //reset buffering and set unstarted state to true
+    console.log('video UNSTARTED');
+    const actionVideoState = {type: 'VIDEO_UNSTARTED'};
+    this.props.dispatch(actionVideoState);
+
     const allVideosInChannel =
       mychannels[
         this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
@@ -40,7 +60,7 @@ export class VideoVisualiser extends Component {
     }
 
     this._player.playVideoAt(IndexOfFirstUnwatchedVideo);
-
+    //Add video to the list of videos I have watched
     const watchedVideo =
       mychannels[
         this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
@@ -49,6 +69,13 @@ export class VideoVisualiser extends Component {
     console.log('VIDEO I HAVE JUST WATCHED', watchedVideo);
     const action = {type: 'ADD_WATCHED_VIDEO', payload: watchedVideo};
     this.props.dispatch(action);
+    console.log('this.props.state.videos', this.props.state.videos);
+  };
+  bufferingVideo = () => {
+    //when buffering video check whether 'unstarted' has been triggered
+    const actionVideoState = {type: 'UPDATE_BUFFERING', payload: null};
+    this.props.dispatch(actionVideoState);
+    console.log('AFTER BUFFERING DISPATCHED', this.props.state.videostate);
   };
   render() {
     return (
@@ -57,7 +84,7 @@ export class VideoVisualiser extends Component {
           // The YouTube video ID
           //videoId="FOH3ZOMBwhY"
           ref={item => (this._player = item)}
-          //videoId={mychannels[0].playlist[0]}
+          //videoId
           videoIds={
             mychannels[
               this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
@@ -67,13 +94,15 @@ export class VideoVisualiser extends Component {
           fullscreen={false} // control whether the video should play in fullscreen or inline
           loop // control whether the video should loop when ended
           onReady={e => {
-            console.log('onReady');
             this.setState({isReady: true});
           }}
+          //onStart={() => console.log('STARTING')}
           onChangeState={(...args) => {
             console.log('args', args);
             if (args[0].state === 'unstarted') {
               this.currentVideo();
+            } else if (args[0].state === 'buffering') {
+              this.bufferingVideo();
             }
 
             // this.setState({status: e.state});
