@@ -1,16 +1,40 @@
 import React, {Component} from 'react';
-import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
+import {Dimensions, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import ChannelVisualiser from '../components/channelbar/ChannelVisualiser';
 import VideoVisualiser from '../components/videoscreen/VideoVisualiser';
 
 class VideoApp extends Component {
-  state = {
+  constructor() {
+    super();
+
+    /**
+     * Returns true if the screen is in portrait mode
+     */
+    const isPortrait = () => {
+      const dim = Dimensions.get('screen');
+      return dim.height >= dim.width;
+    };
+
+    this.state = {
+      orientation: isPortrait() ? 'portrait' : 'landscape',
+    };
+
+    // Event Listener for orientation changes
+    Dimensions.addEventListener('change', () => {
+      this.setState({
+        orientation: isPortrait() ? 'portrait' : 'landscape',
+      });
+      console.log('ORIENTATION HAS CHANGED');
+    });
+  }
+  /*state = {
     channelChanged: false,
   };
   channelChangedHandler = () => {
     this.setState({channelChanged: !this.state.channelChanged});
     //alert('channel changing');
-  };
+  };*/
+
   render() {
     return (
       <>
