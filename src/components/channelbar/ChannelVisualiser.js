@@ -14,9 +14,16 @@ export class ChannelVisualiser extends Component {
   channelSelect = (id, icon) => {
     const action = {type: 'NEW_CHANNEL', payload: {id, icon}};
     this.props.dispatch(action);
-    const actionVideoState = {type: 'RESET_BUFFERING', payload: null};
+    //reset buffering to 0 and unstart to zero on channel change
+    const actionVideoState = {
+      type: 'RESET_BUFFERING',
+      payload: {buffering: 0, unstarted: false},
+    };
     this.props.dispatch(actionVideoState);
-    console.log('this.props after dispatch', this.props.state.videostate);
+    console.log(
+      'RESET_BUFFERING AFTER CHANGING CHANNELS',
+      this.props.state.videostate,
+    );
   };
   render() {
     return (

@@ -10,9 +10,10 @@ export default (state = {buffering: 0, unstarted: false}, action = {}) => {
     case 'RESET_BUFFERING':
       //triggered when channel changed by user
       console.log('RESET_BUFFERING');
-      return {...state, ...(state.buffering = 0)};
+      return action.payload;
     case 'VIDEO_UNSTARTED':
-      return state;
+      console.log('VIDEO_UNSTARTED');
+      return action.payload; //{...(state.buffering = 0), ...(state.unstarted = true)};
 
     default:
       return state;
