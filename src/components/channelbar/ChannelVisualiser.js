@@ -47,7 +47,11 @@ export class ChannelVisualiser extends Component {
               }}
             />
           </View>
-          <Text style={styles.mainText}>Channel Selector</Text>
+
+          <Text style={styles.mainText}>
+            {'<-'} Channel Selector {'->'}
+          </Text>
+
           <View style={styles.flatlist}>
             <FlatList
               horizontal={true}
@@ -65,7 +69,9 @@ export class ChannelVisualiser extends Component {
                     />
                   </TouchableHighlight>
                   <View style={styles.videoNumber}>
-                    <Text>{item.playlist.length}</Text>
+                    <Text style={styles.videoNumberText}>
+                      {item.playlist.length}
+                    </Text>
                   </View>
                   <Text>{item.name}</Text>
                 </View>
@@ -91,11 +97,11 @@ const styles = StyleSheet.create({
   main: {
     flex: 2,
     alignItems: 'center',
-    backgroundColor: 'red',
+    backgroundColor: '#e60000',
   },
   mainText: {
     fontSize: 30,
-    color: 'blue',
+    color: 'white',
   },
   flatlist: {
     flex: 1,
@@ -123,9 +129,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   currentChannelText: {
-    color: 'blue',
-    borderBottomColor: 'black',
-    borderStyle: 'solid',
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
   currentChannelIcon: {
     marginLeft: 20,
@@ -140,5 +146,8 @@ const styles = StyleSheet.create({
     height: 30,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  videoNumberText: {
+    color: 'white',
   },
 });

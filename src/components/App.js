@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Dimensions, SafeAreaView, StyleSheet, View, Text} from 'react-native';
-import ChannelVisualiser from '../components/channelbar/ChannelVisualiser';
-import VideoVisualiser from '../components/videoscreen/VideoVisualiser';
+import ChannelVisualiser from './channelbar/ChannelVisualiser';
+import VideoVisualiser from './videoscreen/VideoVisualiser';
 
-class VideoApp extends Component {
+class App extends Component {
   constructor() {
     super();
 
@@ -39,9 +39,6 @@ class VideoApp extends Component {
           {this.state.orientation && (
             <ChannelVisualiser orientation={this.state.orientation} />
           )}
-          {/*<View style={styles.main}>
-            <Text>Navigation</Text>
-    </View>*/}
         </SafeAreaView>
       </>
     );
@@ -52,14 +49,13 @@ const styles = StyleSheet.create({
   heading: {
     flex: 0.5,
     alignItems: 'center',
-    backgroundColor: 'red',
-    borderRadius: 20,
-    borderColor: 'black',
+    backgroundColor: '#e60000',
+    justifyContent: 'center',
   },
   header: {
     fontSize: 30,
-    color: 'blue',
-
+    color: 'white',
+    fontWeight: 'bold',
     alignItems: 'center',
   },
   safeArea: {
@@ -68,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default VideoApp;
+export default App;

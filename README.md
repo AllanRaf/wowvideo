@@ -32,9 +32,12 @@ On your Mac terminal run the following (excluding the $ sign):
 5. $ cd ios
 For the following ensure that Cocoapods has been installed (See Cocoapods above)
 6. $ pod install
-
 7. $ cd ..
 8. $ react-native run-ios
+
+## Changing Channels
+
+Click on the emojis underneath the title 'Channel Selector' to change channels.  You can slide the emojis left or right to view the other channels.
 
 ## Known Issues
 
@@ -43,10 +46,11 @@ When the the app is first run the default channel and icon is not be displayed. 
 react-native-youtube was used to play videos. There seemed to be an issue using videoId when a playlist was supplied to the component. The videoId never changed and defaulted to the first video in the playlist even though a different video was playing on the playlist.  Initially, this would have been useful when implementing the algorithm to calculate whether a video had been seen or not, however, as videoId did not change in line with the playlist this was not used.
 
 
-
 ## Future Work
 
 - Display number of unseen videos underneath each channel.
 - Let the user skip a video by pressing on the same channel again.
+
+
 
 

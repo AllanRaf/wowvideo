@@ -10,12 +10,12 @@ export const mychannels = [
     name: 'LOL',
     icon:
       'https://neverthink.tv/assets/images/61d1aeee19fd7cff13a8b17727f1b5a4e9645f16c42ff376a5e5f3ce8a373df2.png',
-    playlist: ['_Czxy3nya8Y', '8V0HETilr4I', 'tHa260XXH6U'],
+    playlist: ['_Czxy3nya8Y', '8V0HETilr4I', 'tHa260XXH6U', 'gQvtycrQykY'],
   },
   {
     id: 3,
     name: 'WTF',
-    icon: 'https://emoji.beeimg.com/%F0%9F%98%83/40',
+    icon: 'https://emoji.beeimg.com/😬',
     playlist: ['5Dbvd4E-334', 'JZnlJ2upJv8', 'iCc5l8iWUZs'],
   },
   {
@@ -28,7 +28,7 @@ export const mychannels = [
     id: 5,
     name: 'Food',
     icon: 'https://emoji.beeimg.com/🍿/40/apple',
-    playlist: ['gQvtycrQykY', 'Km8kIX-8hVs', 'JZnlJ2upJv8'],
+    playlist: ['gQvtycrQykY', 'Km8kIX-8hVs', 'JZnlJ2upJv8', '28xjtYY3V3Q'],
   },
   {
     id: 6,
