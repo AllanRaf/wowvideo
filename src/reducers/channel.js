@@ -1,8 +1,8 @@
 //reducers/channel.js
+import {CHANGE_CHANNEL} from '../constants/channel';
 export default (state = 1, action) => {
   switch (action.type) {
-    case 'NEW_CHANNEL':
-      console.log('NEW CHANNEL', action.payload);
+    case CHANGE_CHANNEL:
       return {...action.payload};
 
     default:

@@ -9,19 +9,16 @@ import {
 } from 'react-native';
 import {mychannels} from '../../../channels/mychannels';
 import {connect} from 'react-redux';
+import {CHANGE_CHANNEL} from '../../constants/channel';
+import {RESET_BUFFERING} from '../../constants/videostate';
 
 export class ChannelVisualiser extends Component {
-  componentDidMount() {
-    if (this.props.orientation) {
-      console.log('ORIENTATION CHANGED', this.props.orientation);
-    }
-  }
   channelSelect = (id, icon, name) => {
-    const action = {type: 'NEW_CHANNEL', payload: {id, icon, name}};
+    const action = {type: CHANGE_CHANNEL, payload: {id, icon, name}};
     this.props.dispatch(action);
-    //On channel change reset video states to detect whether video has been seen.
+    //On channel change reset video states to detect whether new video that starts has been seen
     const actionVideoState = {
-      type: 'RESET_BUFFERING',
+      type: RESET_BUFFERING,
       payload: {buffering: 0, unstarted: false},
     };
     this.props.dispatch(actionVideoState);
@@ -67,7 +64,7 @@ export class ChannelVisualiser extends Component {
           </View>
 
           <Text style={styles.mainText}>
-            {'<-'} Channel Selector {'->'}
+            {'<-   '} Channel Selector {'   ->'}
           </Text>
 
           <View style={styles.flatlist}>
