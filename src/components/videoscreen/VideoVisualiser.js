@@ -8,8 +8,8 @@ import {ADD_WATCHED_VIDEO, UPDATE_WATCHED_VIDEOS} from '../../constants/video';
 
 export class VideoVisualiser extends Component {
   currentVideo = event => {
-    //update buffering if buffering for first time on buffering event
-    //and set unstarted state to true if moving on to next video in playlist
+    //event unstarted occurs once when each new video is played AFTER the first one in the channel
+    //event buffering occurs for any video and is used to detect whether first video in channel is playing
     if (event === 'unstarted') {
       const action = {
         type: VIDEO_UNSTARTED,
@@ -75,7 +75,6 @@ export class VideoVisualiser extends Component {
       <>
         <YouTube
           ref={item => (this._player = item)}
-          //videoId
           videoIds={
             mychannels[
               this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
@@ -87,7 +86,6 @@ export class VideoVisualiser extends Component {
             this.setState({isReady: true});
           }}
           onChangeState={(...args) => {
-            console.log('args', args);
             if (
               args[0].state === 'unstarted' ||
               args[0].state === 'buffering'

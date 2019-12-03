@@ -25,20 +25,21 @@ export class ChannelVisualiser extends Component {
   };
 
   render() {
+    console.log('MY CHANNEL IS', this.props.state);
     return (
       <>
         <View style={styles.main}>
           <View style={styles.currentChannel}>
             <Text style={styles.currentChannelText}>
               Current Channel:{' '}
-              {this.props.state
+              {this.props.state.channel.name
                 ? this.props.state.channel.name
                 : mychannels[0].name}
             </Text>
             <Image
               style={styles.currentChannelIcon}
               source={{
-                uri: this.props.state
+                uri: this.props.state.channel.icon
                   ? this.props.state.channel.icon
                   : mychannels[0].icon,
               }}

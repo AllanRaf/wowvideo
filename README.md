@@ -59,11 +59,9 @@ The videos supplied are random and may bear no relation to their channel titles.
 
 ## Known Issues
 
-1. When the the app is first run the default channel and icon is not be displayed. These become visible when a channel is selected.
+1. react-native-youtube was used to play videos. There seemed to be an issue using videoId when a playlist was supplied to the component. The videoId never changed and defaulted to the first video in the playlist even though a different video was playing on the playlist.  Initially, this would have been useful when implementing the algorithm to calculate whether a video had been seen or not, however, as videoId did not change in line with the playlist this was not used.
 
-2. react-native-youtube was used to play videos. There seemed to be an issue using videoId when a playlist was supplied to the component. The videoId never changed and defaulted to the first video in the playlist even though a different video was playing on the playlist.  Initially, this would have been useful when implementing the algorithm to calculate whether a video had been seen or not, however, as videoId did not change in line with the playlist this was not used.
-
-3. When a video has been seen it may momentarily play before moving on to next unseen video.
+2. When a video has been seen it may momentarily play before moving on to next unseen video.
 
 
 ## Future Work
