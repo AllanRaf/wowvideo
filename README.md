@@ -46,6 +46,7 @@ $ npm install
 - $ react-native run-ios
 
 After executing the above steps you should have the app running in the simulator
+
 ![wowvideo](https://github.com/AllanRaf/wowvideo/blob/master/gifs/wowvideo1.gif)
 
 ## Changing Channels
@@ -61,8 +62,8 @@ react-native-youtube was used to play videos. There seemed to be an issue using 
 
 ## Future Work
 
-- Display number of unseen videos underneath each channel.
 - Let the user skip a video by pressing on the same channel again.
+- Update number of unseen videos underneath a channel
 
 
 
