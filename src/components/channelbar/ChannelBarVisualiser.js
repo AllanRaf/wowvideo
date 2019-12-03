@@ -16,7 +16,7 @@ export class ChannelVisualiser extends Component {
   channelSelect = (id, icon, name) => {
     const action = {type: CHANGE_CHANNEL, payload: {id, icon, name}};
     this.props.dispatch(action);
-    //On channel change reset video states to detect whether new video that starts has been seen
+    //On channel change reset video states to use them to detect whether new video playing is unseen
     const actionVideoState = {
       type: RESET_BUFFERING,
       payload: {buffering: 0, unstarted: false},
@@ -63,9 +63,7 @@ export class ChannelVisualiser extends Component {
             </TouchableHighlight>
           </View>
 
-          <Text style={styles.mainText}>
-            {'<-   '} Channel Selector {'   ->'}
-          </Text>
+          <Text style={styles.mainText}>Channel Selector</Text>
 
           <View style={styles.flatlist}>
             <FlatList

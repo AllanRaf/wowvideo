@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Dimensions, SafeAreaView, StyleSheet, View, Text} from 'react-native';
-import ChannelVisualiser from './channelbar/ChannelVisualiser';
+import ChannelVisualiser from './channelbar/ChannelBarVisualiser';
 import VideoVisualiser from './videoscreen/VideoVisualiser';
 
 class App extends Component {
@@ -22,7 +22,6 @@ class App extends Component {
       this.setState({
         orientation: isPortrait() ? true : false,
       });
-      console.log('IS PORTRAIT', this.state.orientation);
     });
   }
 

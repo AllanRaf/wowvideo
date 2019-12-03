@@ -17,7 +17,7 @@ The instructions below are for Mac users.
 
 Before being able to install the app and make it run you need to have react-native, npm, cocoapods and Xcode installed.
 
-npm is the package manager used and the Xcode tool is used to simulate an iPhone to test your app.  Cocoapods is also required to manage dependencies for your Xcode project.
+npm is the package manager used and the Xcode tool is used to simulate an iPhone to test your app. Cocoapods is also required to manage dependencies for your Xcode project.
 
 For more information about npm, Xcode, react-native and cocoapods and how to install them click on the relevent link below:
 
@@ -45,13 +45,17 @@ $ npm install
 8. Run the video app on the simulator
 - $ react-native run-ios
 
-After executing the above steps you should have the app running in the simulator
+After executing the above steps you should have the app running in the simulator:
 
 ![wowvideo](https://github.com/AllanRaf/wowvideo/blob/master/gifs/wowvideo1.gif)
 
 ## Changing Channels
 
 Click on the emojis underneath the title 'Channel Selector' to change channels.  You can slide the emojis left or right to view the other channels.
+
+You can also modify the [mychannels.js](https://github.com/AllanRaf/wowvideo/blob/master/channels/mychannels.js) file.  You can add an extra video to a playlist in a channel by adding a video Id to the array or even remove videos you do not like.
+
+The videos supplied are random and may bear no relation to their channel titles.
 
 ## Known Issues
 
@@ -63,12 +67,13 @@ Click on the emojis underneath the title 'Channel Selector' to change channels. 
 
 
 ## Future Work
+
 ### Features to add
 - Let the user skip a video by pressing on the same channel again.
 - Update number of unseen videos underneath a channel
 
 ### Use Redux Middleware
-- It will be useful to use Redux Middlware to handle an increased number of dispatches when the app becomes more complex
+- It would be useful to use Redux Middlware to handle an increased number of dispatches when the app becomes more complex.  At its current state this was not deemed necessary.
 
 
 

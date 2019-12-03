@@ -10,7 +10,7 @@ import {
 export default (state = {buffering: 0, unstarted: false}, action = {}) => {
   switch (action.type) {
     case UPDATE_BUFFERING:
-      return {...state, ...state.buffering++};
+      return Object.assign({}, state, {buffering: 1}); //{...state, ...state.buffering++};
     case RESET_BUFFERING:
       return action.payload;
     case VIDEO_UNSTARTED:
