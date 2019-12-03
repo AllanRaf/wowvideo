@@ -1,40 +1,52 @@
 ## About wowvideo
 
-This project was created using React-Native.  
-It is a video app where a user gets shown videos. The user can change channels and will get a video that autoplays on that channel. Videos that have not been seen will be shown first. If all the videos in a channel have been watched then the channel resets.
+This project was created using React-Native.  It has been designed for the iOS platform and will work with Xcode to simulate an iPhone.
 
-The project makes use of the component react-native-youtube.
+wowvideo is a video app where a user gets shown hand picked videos. The user can change channels and will get a video that autoplays on that channel. Videos that have not been seen will be shown first and if a user has seen all the videos in the channel the channel will be reset so that the videos are replayed and you are not left with an empty channel.
+
+The project makes use of the component react-native-youtube to play videos.
 
 ## Technologies used
 
 - React-Native
+- react-native-youtube
 
 ## Installation and Quick Set Up
 
 The instructions below are for Mac users.
 
-Before being able to install the app you need to have react-native, npm, cocoapods and Xcode installed.
+Before being able to install the app and make it run you need to have react-native, npm, cocoapods and Xcode installed.
+
 npm is the package manager used and the Xcode tool is used to simulate an iPhone to test your app.  Cocoapods is also required to manage dependencies for your Xcode project.
 
-For more information about npm, Xcode and react native click on the relevent link below:
+For more information about npm, Xcode, react-native and cocoapods and how to install them click on the relevent link below:
+
 [npm](https://www.npmjs.com/)
 [react-native](https://facebook.github.io/react-native/docs/getting-started)
 [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12)
 [Cocoapods](https://guides.cocoapods.org/using/getting-started.html)
 
-On your Mac terminal run the following (excluding the $ sign):
+On your Mac terminal carry out the following and execute the commands where proceeding the $ sign:
 
-1. $ git clone https://github.com/AllanRaf/wowvideo
-2. $ cd wowvideo
-3. $ npm install
-4. $ react-native link react-native-youtube
-   Navigate to the ios folder to ensure that react-native-youtube has been linked to your project
-5. $ cd ios
-For the following ensure that Cocoapods has been installed (See Cocoapods above)
-6. $ pod install
-7. $ cd ..
-8. $ react-native run-ios
+1. Clone the respository
+- $ git clone https://github.com/AllanRaf/wowvideo
+2. Navigate to the project folder
+$ cd wowvideo
+3. Install the required dependencies
+$ npm install
+4. Link the relevant dependencies to your Xcode project
+- $ react-native link react-native-youtube
+5. Navigate to the ios folder to ensure that react-native-youtube has been linked to your project
+- $ cd ios
+6.  For the following ensure that Cocoapods has been installed (See Cocoapods above)
+- $ pod install
+7. Navigate to the root directory of the project
+- $ cd ..
+8. Run the video app on the simulator
+- $ react-native run-ios
 
+After executing the above steps you should have the app running in the simulator
+![alt text](https://github.com/AllanRaf/
 ## Changing Channels
 
 Click on the emojis underneath the title 'Channel Selector' to change channels.  You can slide the emojis left or right to view the other channels.

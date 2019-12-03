@@ -3,6 +3,8 @@ import {StyleSheet} from 'react-native';
 import YouTube from 'react-native-youtube';
 import {mychannels} from '../../../channels/mychannels';
 import {connect} from 'react-redux';
+import {VIDEO_UNSTARTED, UPDATE_BUFFERING} from '../../constants/videostate';
+import {UPDATE_WATCHED_VIDEOS} from '../../constants/video';
 
 export class VideoVisualiser extends Component {
   constructor(props) {
@@ -16,14 +18,15 @@ export class VideoVisualiser extends Component {
     //update buffering if buffering for first time on buffering event
     //and set unstarted state to true on video unstarted event
     if (event === 'unstarted') {
+      console.log('VIDEO UNSTARTED', VIDEO_UNSTARTED);
       const actionVideoState = {
-        type: 'VIDEO_UNSTARTED',
+        type: VIDEO_UNSTARTED,
         payload: {buffering: 0, unstarted: true},
       };
       //1. update unstarted to true
       this.props.dispatch(actionVideoState);
     } else if (this.props.state.videostate.buffering === 0) {
-      const actionVideoState = {type: 'UPDATE_BUFFERING', payload: null};
+      const actionVideoState = {type: UPDATE_BUFFERING, payload: null};
       this.props.dispatch(actionVideoState);
     } else {
       //second buffer or higher -> video has not changed.  No need to check if video has been watched.
@@ -57,7 +60,7 @@ export class VideoVisualiser extends Component {
       });
       //update Redux state to reflect this
       const action = {
-        type: 'UPDATE_WATCHED_VIDEOS',
+        type: UPDATE_WATCHED_VIDEOS,
         payload: updateVideosIHaveSeen,
       };
       //7. Update Redux state to show new videos I haven't seen
@@ -113,10 +116,7 @@ export class VideoVisualiser extends Component {
             ) {
               this.currentVideo(args[0].state);
             }
-
-            // this.setState({status: e.state});
           }}
-          //onChangeQuality={e => this.setState({quality: e.quality})}
           //onError={e => this.setState({error: e.error})}
           style={styles.videoArea}
         />

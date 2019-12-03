@@ -26,6 +26,12 @@ export class ChannelVisualiser extends Component {
     };
     this.props.dispatch(actionVideoState);
   };
+  favourite = () => {
+    console.log(
+      'favourite selected',
+      this.props.state.videos[this.props.state.videos.length - 1],
+    );
+  };
 
   render() {
     return (
@@ -46,6 +52,18 @@ export class ChannelVisualiser extends Component {
                   : mychannels[0].icon,
               }}
             />
+            <TouchableHighlight
+              onPress={() => {
+                this.favourite();
+              }}>
+              <Image
+                style={styles.currentChannelIcon}
+                source={{
+                  uri:
+                    'https://www.trzcacak.rs/myfile/full/19-195499_heart-outline-heart-emoji-coloring-pages.png',
+                }}
+              />
+            </TouchableHighlight>
           </View>
 
           <Text style={styles.mainText}>
@@ -97,7 +115,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 2,
     alignItems: 'center',
-    backgroundColor: '#e60000',
+    backgroundColor: '#e67300', //'#e60000',
   },
   mainText: {
     fontSize: 30,
@@ -127,6 +145,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10,
     alignItems: 'center',
+    borderBottomWidth: 5,
   },
   currentChannelText: {
     color: 'white',

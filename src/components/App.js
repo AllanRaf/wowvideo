@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   heading: {
     flex: 0.5,
     alignItems: 'center',
-    backgroundColor: '#e60000',
+    backgroundColor: '#e67300', //'#e60000',
     justifyContent: 'center',
   },
   header: {
