@@ -4,7 +4,7 @@ import YouTube from 'react-native-youtube';
 import {mychannels} from '../../../channels/mychannels';
 import {connect} from 'react-redux';
 import {VIDEO_UNSTARTED, UPDATE_BUFFERING} from '../../constants/videostate';
-import {UPDATE_WATCHED_VIDEOS} from '../../constants/video';
+import {ADD_WATCHED_VIDEO, UPDATE_WATCHED_VIDEOS} from '../../constants/video';
 
 export class VideoVisualiser extends Component {
   constructor(props) {
@@ -41,6 +41,7 @@ export class VideoVisualiser extends Component {
 
     //3. Find all videos I have seen
     const allVideosIHaveSeen = this.props.state.videos;
+    //const allVideosIHaveSeen = this.props.state.videos.watched;
 
     //4. Find all videos I haven't seen = unwatchedVideos
     const unwatchedVideos = allVideosInChannel.filter(video => {
@@ -74,7 +75,7 @@ export class VideoVisualiser extends Component {
         this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
       ].playlist[indexOfFirstUnwatchedVideo];
 
-    const action = {type: 'ADD_WATCHED_VIDEO', payload: watchedVideo};
+    const action = {type: ADD_WATCHED_VIDEO, payload: watchedVideo};
     this.props.dispatch(action);
 
     //9.  Find index of current video I am watching
@@ -96,7 +97,6 @@ export class VideoVisualiser extends Component {
       <>
         <YouTube
           ref={item => (this._player = item)}
-          //videoId
           videoIds={
             mychannels[
               this.props.state.channel.id ? this.props.state.channel.id - 1 : 0

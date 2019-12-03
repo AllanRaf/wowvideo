@@ -32,7 +32,7 @@ class App extends Component {
         <SafeAreaView style={styles.safeArea}>
           {this.state.orientation && (
             <View style={styles.heading}>
-              <Text style={styles.header}>Videos</Text>
+              <Text style={styles.header}>WOW VIDEO</Text>
             </View>
           )}
           <VideoVisualiser orientation={this.state.orientation} />

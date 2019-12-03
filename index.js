@@ -3,7 +3,7 @@
  */
 
 import {AppRegistry} from 'react-native';
-import Video from './src/components/Video';
+import VideoApp from './src/components/VideoApp';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => Video);
+AppRegistry.registerComponent(appName, () => VideoApp);

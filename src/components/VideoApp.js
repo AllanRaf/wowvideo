@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import store from '../store';
 import App from './App';
 
-export default class Video extends Component {
+export default class VideoApp extends Component {
   render() {
     return (
       <Provider store={store}>
