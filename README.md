@@ -46,7 +46,7 @@ $ npm install
 - $ react-native run-ios
 
 After executing the above steps you should have the app running in the simulator
-![alt text](https://github.com/AllanRaf/
+![wowvideo](https://github.com/AllanRaf/wowvideo/tree/master/gifs/wowvideo1.gif)
 ## Changing Channels
 
 Click on the emojis underneath the title 'Channel Selector' to change channels.  You can slide the emojis left or right to view the other channels.
