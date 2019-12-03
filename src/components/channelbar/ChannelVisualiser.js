@@ -25,18 +25,15 @@ export class ChannelVisualiser extends Component {
       payload: {buffering: 0, unstarted: false},
     };
     this.props.dispatch(actionVideoState);
-    console.log(
-      'RESET_BUFFERING AFTER CHANGING CHANNELS',
-      this.props.state.videostate,
-    );
   };
+
   render() {
     return (
       <>
         <View style={styles.main}>
           <View style={styles.currentChannel}>
-            <Text>
-              Current Channel{' '}
+            <Text style={styles.currentChannelText}>
+              Current Channel:{' '}
               {this.props.state
                 ? this.props.state.channel.name
                 : mychannels[0].name}
@@ -67,6 +64,9 @@ export class ChannelVisualiser extends Component {
                       source={{uri: item.icon}}
                     />
                   </TouchableHighlight>
+                  <View style={styles.videoNumber}>
+                    <Text>{item.playlist.length}</Text>
+                  </View>
                   <Text>{item.name}</Text>
                 </View>
               )}
@@ -108,24 +108,37 @@ const styles = StyleSheet.create({
   image: {
     height: 50,
     width: 50,
-    marginHorizontal: 30,
+    marginHorizontal: 40,
+    marginBottom: 10,
   },
   channelIcons: {
     flex: 0.75,
     alignItems: 'center',
-    justifyContent: 'space-around',
-    /*borderColor: 'black',
-    borderStyle: 'solid',
-    borderRadius: 5,*/
+    justifyContent: 'space-evenly',
   },
   currentChannel: {
     flex: 0.2,
     flexDirection: 'row',
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  currentChannelText: {
+    color: 'blue',
+    borderBottomColor: 'black',
+    borderStyle: 'solid',
   },
   currentChannelIcon: {
     marginLeft: 20,
     width: 30,
     height: 30,
     borderRadius: 10,
+  },
+  videoNumber: {
+    borderRadius: 30,
+    borderWidth: 1,
+    width: 30,
+    height: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

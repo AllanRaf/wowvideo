@@ -53,11 +53,14 @@ const styles = StyleSheet.create({
     flex: 0.5,
     alignItems: 'center',
     backgroundColor: 'red',
+    borderRadius: 20,
+    borderColor: 'black',
   },
   header: {
     fontSize: 30,
     color: 'blue',
-    backgroundColor: 'green',
+
+    alignItems: 'center',
   },
   safeArea: {
     flex: 1,

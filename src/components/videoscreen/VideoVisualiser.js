@@ -105,7 +105,6 @@ export class VideoVisualiser extends Component {
           onReady={e => {
             this.setState({isReady: true});
           }}
-          //onStart={() => console.log('STARTING')}
           onChangeState={(...args) => {
             console.log('args', args);
             if (
@@ -153,6 +152,6 @@ const styles = StyleSheet.create({
   videoArea: {
     flex: 4,
     alignSelf: 'stretch',
-    height: 300,
+    height: 400,
   },
 });
