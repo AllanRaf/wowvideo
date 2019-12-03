@@ -23,12 +23,6 @@ export class ChannelVisualiser extends Component {
     };
     this.props.dispatch(actionVideoState);
   };
-  favourite = () => {
-    console.log(
-      'favourite selected',
-      this.props.state.videos[this.props.state.videos.length - 1],
-    );
-  };
 
   render() {
     return (
@@ -49,18 +43,6 @@ export class ChannelVisualiser extends Component {
                   : mychannels[0].icon,
               }}
             />
-            <TouchableHighlight
-              onPress={() => {
-                this.favourite();
-              }}>
-              <Image
-                style={styles.currentChannelIcon}
-                source={{
-                  uri:
-                    'https://www.trzcacak.rs/myfile/full/19-195499_heart-outline-heart-emoji-coloring-pages.png',
-                }}
-              />
-            </TouchableHighlight>
           </View>
 
           <Text style={styles.mainText}>Channel Selector</Text>
