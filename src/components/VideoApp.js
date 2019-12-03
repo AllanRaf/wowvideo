@@ -7,46 +7,41 @@ class VideoApp extends Component {
   constructor() {
     super();
 
-    /**
-     * Returns true if the screen is in portrait mode
-     */
+    //check whether portrait or landscape
     const isPortrait = () => {
       const dim = Dimensions.get('screen');
       return dim.height >= dim.width;
     };
 
     this.state = {
-      orientation: isPortrait() ? 'portrait' : 'landscape',
+      orientation: isPortrait() ? true : false,
     };
 
     // Event Listener for orientation changes
     Dimensions.addEventListener('change', () => {
       this.setState({
-        orientation: isPortrait() ? 'portrait' : 'landscape',
+        orientation: isPortrait() ? true : false,
       });
-      console.log('ORIENTATION HAS CHANGED');
+      console.log('IS PORTRAIT', this.state.orientation);
     });
   }
-  /*state = {
-    channelChanged: false,
-  };
-  channelChangedHandler = () => {
-    this.setState({channelChanged: !this.state.channelChanged});
-    //alert('channel changing');
-  };*/
 
   render() {
     return (
       <>
         <SafeAreaView style={styles.safeArea}>
-          <View style={styles.main}>
-            <Text>Videos</Text>
-          </View>
-          <VideoVisualiser channelChanged={this.state.channelChanged} />
-          <ChannelVisualiser changingChannel={this.channelChangedHandler} />
-          <View style={styles.main}>
+          {this.state.orientation && (
+            <View style={styles.heading}>
+              <Text style={styles.header}>Videos</Text>
+            </View>
+          )}
+          <VideoVisualiser orientation={this.state.orientation} />
+          {this.state.orientation && (
+            <ChannelVisualiser orientation={this.state.orientation} />
+          )}
+          {/*<View style={styles.main}>
             <Text>Navigation</Text>
-          </View>
+    </View>*/}
         </SafeAreaView>
       </>
     );
@@ -54,10 +49,15 @@ class VideoApp extends Component {
 }
 
 const styles = StyleSheet.create({
-  main: {
-    flex: 1,
+  heading: {
+    flex: 0.5,
     alignItems: 'center',
     backgroundColor: 'red',
+  },
+  header: {
+    fontSize: 30,
+    color: 'blue',
+    backgroundColor: 'green',
   },
   safeArea: {
     flex: 1,
@@ -66,16 +66,3 @@ const styles = StyleSheet.create({
 });
 
 export default VideoApp;
-
-/*
-            <ChannelVisualiser channelChanging={this.channelChangedHandler}/>
-            </View>
-            <VideoVisualiser channelChanged={this.state.channelChanged} />
-      tried to refer to other component using ref
-                      <VideoVisualiser ref={instance => (this.video = instance)} />
-          <ChannelVisualiser
-            changingChannel={() => {
-              this.video.currentVideo();
-            }}
-          />
-            */
