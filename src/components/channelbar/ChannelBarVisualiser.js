@@ -25,7 +25,6 @@ export class ChannelVisualiser extends Component {
   };
 
   render() {
-    console.log('MY CHANNEL IS', this.props.state);
     return (
       <>
         <View style={styles.main}>
@@ -45,7 +44,6 @@ export class ChannelVisualiser extends Component {
               }}
             />
           </View>
-
           <Text style={styles.mainText}>Channel Selector</Text>
 
           <View style={styles.flatlist}>
@@ -64,8 +62,8 @@ export class ChannelVisualiser extends Component {
                       source={{uri: item.icon}}
                     />
                   </TouchableHighlight>
-                  <View style={styles.videoNumber}>
-                    <Text style={styles.videoNumberText}>
+                  <View style={styles.playlistLength}>
+                    <Text style={styles.playlistLengthText}>
                       {item.playlist.length}
                     </Text>
                   </View>
@@ -136,7 +134,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 10,
   },
-  videoNumber: {
+  playlistLength: {
     borderRadius: 30,
     borderWidth: 1,
     width: 30,
@@ -144,7 +142,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  videoNumberText: {
+  playlistLengthText: {
     color: 'white',
   },
 });

@@ -1,22 +1,19 @@
 import React, {Component} from 'react';
 import {Dimensions, SafeAreaView, StyleSheet, View, Text} from 'react-native';
-import ChannelVisualiser from './channelbar/ChannelBarVisualiser';
+import ChannelBarVisualiser from './channelbar/ChannelBarVisualiser';
 import VideoVisualiser from './videoscreen/VideoVisualiser';
 
 class App extends Component {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
     //check whether portrait or landscape
     const isPortrait = () => {
       const dim = Dimensions.get('screen');
       return dim.height >= dim.width;
     };
-
     this.state = {
       orientation: isPortrait() ? true : false,
     };
-
     // Event Listener for orientation changes
     Dimensions.addEventListener('change', () => {
       this.setState({
@@ -34,10 +31,8 @@ class App extends Component {
               <Text style={styles.header}>WOW VIDEO</Text>
             </View>
           )}
-          <VideoVisualiser orientation={this.state.orientation} />
-          {this.state.orientation && (
-            <ChannelVisualiser orientation={this.state.orientation} />
-          )}
+          <VideoVisualiser />
+          {this.state.orientation && <ChannelBarVisualiser />}
         </SafeAreaView>
       </>
     );
@@ -48,7 +43,7 @@ const styles = StyleSheet.create({
   heading: {
     flex: 0.5,
     alignItems: 'center',
-    backgroundColor: '#e67300', //'#e60000',
+    backgroundColor: '#e67300',
     justifyContent: 'center',
   },
   header: {
