@@ -20,29 +20,29 @@ npm is the package manager used and the Xcode tool is used to simulate an iPhone
 
 For more information about npm, Xcode, react-native and cocoapods and how to install them click on the relevent link below:
 
-[npm](https://www.npmjs.com/)
-[react-native](https://facebook.github.io/react-native/docs/getting-started)
-[Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12)
-[Cocoapods](https://guides.cocoapods.org/using/getting-started.html)
+- [npm](https://www.npmjs.com/)
+- [react-native](https://facebook.github.io/react-native/docs/getting-started)
+- [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12)
+- [Cocoapods](https://guides.cocoapods.org/using/getting-started.html)
 
 On your Mac terminal carry out the following and execute the commands where proceeding the $ sign:
 
 1. Clone the respository
-- $ git clone https://github.com/AllanRaf/wowvideo
+   - $ git clone https://github.com/AllanRaf/wowvideo
 2. Navigate to the project folder
-$ cd wowvideo
+   - $ cd wowvideo
 3. Install the required dependencies
-$ npm install
+   - $ npm install
 4. Link the relevant dependencies to your Xcode project
-- $ react-native link react-native-youtube
+   - $ react-native link react-native-youtube
 5. Navigate to the ios folder to ensure that react-native-youtube has been linked to your project
-- $ cd ios
-6.  For the following ensure that Cocoapods has been installed (See Cocoapods above)
-- $ pod install
+   - $ cd ios
+6. For the following ensure that Cocoapods has been installed (See Cocoapods above)
+   - $ pod install
 7. Navigate to the root directory of the project
-- $ cd ..
+  - $ cd ..
 8. Run the video app on the simulator
-- $ react-native run-ios
+  - $ react-native run-ios
 
 After executing the above steps you should have the app running in the simulator:
 
