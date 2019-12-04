@@ -40,9 +40,9 @@ On your Mac terminal carry out the following and execute the commands where proc
 6. For the following ensure that Cocoapods has been installed (See Cocoapods above)
    - $ pod install
 7. Navigate to the root directory of the project
-  - $ cd ..
+   - $ cd ..
 8. Run the video app on the simulator
-  - $ react-native run-ios
+   - $ react-native run-ios
 
 After executing the above steps you should have the app running in the simulator:
 
@@ -52,22 +52,23 @@ After executing the above steps you should have the app running in the simulator
 
 Click on the emojis underneath the title 'Channel Selector' to change channels.  You can slide the emojis left or right to view the other channels.
 
-You can also modify the [mychannels.js](https://github.com/AllanRaf/wowvideo/blob/master/channels/mychannels.js) file.  You can add an extra video to a playlist in a channel by adding a video Id to the array or even remove videos you do not like.
+You can also modify the [mychannels.js](https://github.com/AllanRaf/wowvideo/blob/master/channels/mychannels.js) file.  You can add an extra video to a playlist in a channel by adding a youtube video ID to the array or even remove video IDsyou do not like.
 
 The videos supplied are random and may bear no relation to their channel titles.
 
 ## Known Issues
 
-1. There seemed to be an issue using videoId when a playlist was supplied to the YouTube component imported from react-native-youtube. The videoId never changed and defaulted to the first video in the playlist even though the player had moved on to the next video in the playlist.  The videoId would have been useful when implementing the algorithm to calculate whether a video had been seen or not, however, as videoId did not change in line with the playlist this was not possible.
+- There seemed to be an issue using videoId when a playlist was supplied to the YouTube component imported from react-native-youtube. The videoId never changed and defaulted to the first video in the playlist even though the player had moved on to the next video in the playlist.  The videoId would have been useful when implementing the algorithm to calculate whether a video had been seen or not, however, as videoId did not change in line with the playlist this was not possible.
 
-2. When a video has been seen it may momentarily play before moving on to next unseen video.
+- When a video has been seen it may momentarily play before moving on to next unseen video.
 
 
 ## Future Work
 
 ### Features to add
+
 - Let the user skip a video by pressing on the same channel again.
-- Update number of unseen videos underneath a channel
+- Update number of unseen videos underneath a channel.
 
 ### Use Redux Middleware
 - It would be useful to use Redux Middlware to handle an increased number of dispatches when the app becomes more complex.  At its current state this was not deemed necessary.
