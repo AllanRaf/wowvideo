@@ -9,13 +9,12 @@ The project makes use of the component react-native-youtube to play videos.
 ## Technologies used
 
 - React-Native
-- react-native-youtube
 
 ## Installation and Quick Set Up
 
 The instructions below are for Mac users.
 
-Before being able to install the app and make it run you need to have react-native, npm, cocoapods and Xcode installed.
+Before being able to install the app and make it run you need to have react-native, npm (a package manager), cocoapods and Xcode installed.
 
 npm is the package manager used and the Xcode tool is used to simulate an iPhone to test your app. Cocoapods is also required to manage dependencies for your Xcode project.
 
@@ -59,7 +58,7 @@ The videos supplied are random and may bear no relation to their channel titles.
 
 ## Known Issues
 
-1. react-native-youtube was used to play videos. There seemed to be an issue using videoId when a playlist was supplied to the component. The videoId never changed and defaulted to the first video in the playlist even though a different video was playing on the playlist.  Initially, this would have been useful when implementing the algorithm to calculate whether a video had been seen or not, however, as videoId did not change in line with the playlist this was not used.
+1. There seemed to be an issue using videoId when a playlist was supplied to the YouTube component imported from react-native-youtube. The videoId never changed and defaulted to the first video in the playlist even though the player had moved on to the next video in the playlist.  The videoId would have been useful when implementing the algorithm to calculate whether a video had been seen or not, however, as videoId did not change in line with the playlist this was not possible.
 
 2. When a video has been seen it may momentarily play before moving on to next unseen video.
 
