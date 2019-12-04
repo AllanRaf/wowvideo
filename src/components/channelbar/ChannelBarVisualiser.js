@@ -16,18 +16,12 @@ export class ChannelVisualiser extends Component {
   channelSelect = (id, icon, name) => {
     const action = {type: CHANGE_CHANNEL, payload: {id, icon, name}};
     this.props.dispatch(action);
-    //On channel change reset video states to detect whether new video that starts has been seen
+    //On channel change reset video states to use them to detect whether new video playing is unseen
     const actionVideoState = {
       type: RESET_BUFFERING,
       payload: {buffering: 0, unstarted: false},
     };
     this.props.dispatch(actionVideoState);
-  };
-  favourite = () => {
-    console.log(
-      'favourite selected',
-      this.props.state.videos[this.props.state.videos.length - 1],
-    );
   };
 
   render() {
@@ -37,35 +31,20 @@ export class ChannelVisualiser extends Component {
           <View style={styles.currentChannel}>
             <Text style={styles.currentChannelText}>
               Current Channel:{' '}
-              {this.props.state
+              {this.props.state.channel.name
                 ? this.props.state.channel.name
                 : mychannels[0].name}
             </Text>
             <Image
               style={styles.currentChannelIcon}
               source={{
-                uri: this.props.state
+                uri: this.props.state.channel.icon
                   ? this.props.state.channel.icon
                   : mychannels[0].icon,
               }}
             />
-            <TouchableHighlight
-              onPress={() => {
-                this.favourite();
-              }}>
-              <Image
-                style={styles.currentChannelIcon}
-                source={{
-                  uri:
-                    'https://www.trzcacak.rs/myfile/full/19-195499_heart-outline-heart-emoji-coloring-pages.png',
-                }}
-              />
-            </TouchableHighlight>
           </View>
-
-          <Text style={styles.mainText}>
-            {'<-   '} Channel Selector {'   ->'}
-          </Text>
+          <Text style={styles.mainText}>Channel Selector</Text>
 
           <View style={styles.flatlist}>
             <FlatList
@@ -83,8 +62,8 @@ export class ChannelVisualiser extends Component {
                       source={{uri: item.icon}}
                     />
                   </TouchableHighlight>
-                  <View style={styles.videoNumber}>
-                    <Text style={styles.videoNumberText}>
+                  <View style={styles.playlistLength}>
+                    <Text style={styles.playlistLengthText}>
                       {item.playlist.length}
                     </Text>
                   </View>
@@ -155,7 +134,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 10,
   },
-  videoNumber: {
+  playlistLength: {
     borderRadius: 30,
     borderWidth: 1,
     width: 30,
@@ -163,7 +142,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  videoNumberText: {
+  playlistLengthText: {
     color: 'white',
   },
 });

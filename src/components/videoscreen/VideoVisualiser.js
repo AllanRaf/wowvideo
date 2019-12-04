@@ -7,80 +7,58 @@ import {VIDEO_UNSTARTED, UPDATE_BUFFERING} from '../../constants/videostate';
 import {ADD_WATCHED_VIDEO, UPDATE_WATCHED_VIDEOS} from '../../constants/video';
 
 export class VideoVisualiser extends Component {
-  constructor(props) {
-    super(props);
-  }
-  state = {
-    channelChanged: false,
-  };
-
   currentVideo = event => {
-    //update buffering if buffering for first time on buffering event
-    //and set unstarted state to true on video unstarted event
+    //event unstarted occurs once when each new video is played AFTER the first one in the channel
+    //event buffering occurs for any video and is used to detect whether first video in channel is playing
     if (event === 'unstarted') {
-      console.log('VIDEO UNSTARTED', VIDEO_UNSTARTED);
-      const actionVideoState = {
+      const action = {
         type: VIDEO_UNSTARTED,
         payload: {buffering: 0, unstarted: true},
       };
-      //1. update unstarted to true
-      this.props.dispatch(actionVideoState);
+      this.props.dispatch(action);
     } else if (this.props.state.videostate.buffering === 0) {
+      //video being shown for first time if buffering state was 0
       const actionVideoState = {type: UPDATE_BUFFERING, payload: null};
       this.props.dispatch(actionVideoState);
     } else {
       //second buffer or higher -> video has not changed.  No need to check if video has been watched.
       return;
     }
-
-    //2. Find all videos in current channel which will default to 1 (0 index) at the beginning
+    //Find first index of unwatched video in channel
     const allVideosInChannel =
       mychannels[
         this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
       ].playlist;
-
-    //3. Find all videos I have seen
     const allVideosIHaveSeen = this.props.state.videos;
-    //const allVideosIHaveSeen = this.props.state.videos.watched;
-
-    //4. Find all videos I haven't seen = unwatchedVideos
     const unwatchedVideos = allVideosInChannel.filter(video => {
       return !allVideosIHaveSeen.includes(video);
     });
 
-    //play first video I haven't seen by finding its index
-    //5. Find index of first unwatchedVideo video I haven't seen in allVideosInChannel
     let indexOfFirstUnwatchedVideo = allVideosInChannel.findIndex(
       video => video === unwatchedVideos[0],
     );
-
-    //6. If I have seen everything in the channel then delete all the videos from my watched videos list
+    //If I have seen everything in the channel delete all the videos from my watched videos list
     if (indexOfFirstUnwatchedVideo === -1) {
       const updateVideosIHaveSeen = allVideosIHaveSeen.filter(video => {
         return !allVideosInChannel.includes(video);
       });
-      //update Redux state to reflect this
       const action = {
         type: UPDATE_WATCHED_VIDEOS,
         payload: updateVideosIHaveSeen,
       };
-      //7. Update Redux state to show new videos I haven't seen
       this.props.dispatch(action);
-      //8.  Reset index to zero which is the first video of channel
+      //Reset index to first video in channel
       indexOfFirstUnwatchedVideo = 0;
     }
-    //Add video to allVideosIHaveSeen
+    //Add the video to allVideosIHaveSeen
     const watchedVideo =
       mychannels[
         this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
       ].playlist[indexOfFirstUnwatchedVideo];
-
     const action = {type: ADD_WATCHED_VIDEO, payload: watchedVideo};
     this.props.dispatch(action);
 
-    //9.  Find index of current video I am watching
-    //find out if the index of first unwatched video is the same as the current video I am watching
-    //if it is I don't need to do anything otherwise I should play the first video I have not watched
+    //If the video I am watching is not one I have not seen then change it
     this._player
       .getVideosIndex()
       .then(index => {
@@ -102,14 +80,12 @@ export class VideoVisualiser extends Component {
               this.props.state.channel.id ? this.props.state.channel.id - 1 : 0
             ].playlist
           }
-          play // control playback of video with true/false
-          fullscreen={false} // control whether the video should play in fullscreen or inline
-          loop // control whether the video should loop when ended
+          play={true}
+          fullscreen={false}
           onReady={e => {
             this.setState({isReady: true});
           }}
           onChangeState={(...args) => {
-            console.log('args', args);
             if (
               args[0].state === 'unstarted' ||
               args[0].state === 'buffering'
@@ -117,7 +93,6 @@ export class VideoVisualiser extends Component {
               this.currentVideo(args[0].state);
             }
           }}
-          //onError={e => this.setState({error: e.error})}
           style={styles.videoArea}
         />
       </>
